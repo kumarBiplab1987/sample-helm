@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  labels:
+    app: nginx
+  name: nginx
+  namespace: common
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx
+        imagePullPolicy: Always
+        name: nginx
+        command: ["sh", "-c", "echo $VAULT_SECRET_USER && echo $VAULT_SECRET_PASSWORD && echo going to sleep... && sleep 10000"]
+        #env:
+        #- name: VAULT_SECRET_USER
+        #  value: <path:cluster102b4ndApollo/gateway-config/secrets#name>
+        #- name: VAULT_SECRET_PASSWORD
+        #  value: <path:cluster102b4ndApollo/gateway-config/secrets#value>
