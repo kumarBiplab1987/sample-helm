@@ -50,5 +50,6 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-app:
-  name: demo
+envs:
+  - name: EXTRA_HELM_ENV
+    value: EXTRA_HELM_VALUE

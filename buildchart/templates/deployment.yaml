@@ -6,7 +6,6 @@ metadata:
   labels:
     app: nginx
   name: nginx
-  namespace: common
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
@@ -24,10 +23,8 @@ spec:
         imagePullPolicy: Always
         name: nginx
         command: ["sh", "-c", "echo $VAULT_SECRET_USER && echo $VAULT_SECRET_PASSWORD && echo going to sleep... && sleep 10000"]
-      {{- if .Values.app.envs }}
-      env:
-      {{- range .Values.app.envs }}
-        - name: {{ .name }}
-          value: {{ .value }}
-      {{- end }}
-      {{- end }}
+        env:
+        {{- range .Values.envs }}
+          - name: {{ .name }}
+            value: {{ .value }}
+        {{- end }}
