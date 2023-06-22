@@ -24,8 +24,9 @@ spec:
         imagePullPolicy: Always
         name: nginx
         command: ["sh", "-c", "echo $VAULT_SECRET_USER && echo $VAULT_SECRET_PASSWORD && echo going to sleep... && sleep 10000"]
-        #env:
-        #- name: VAULT_SECRET_USER
-        #  value: <path:cluster102b4ndApollo/gateway-config/secrets#name>
-        #- name: VAULT_SECRET_PASSWORD
-        #  value: <path:cluster102b4ndApollo/gateway-config/secrets#value>
+      env:
+      {{- range .Values.app.envs }}
+       - name: {{ .name }}
+         value: {{ .value }}
+      {{- end }}
+      {{- end }}
