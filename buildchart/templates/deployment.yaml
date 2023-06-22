@@ -24,8 +24,10 @@ spec:
         imagePullPolicy: Always
         name: nginx
         command: ["sh", "-c", "echo $VAULT_SECRET_USER && echo $VAULT_SECRET_PASSWORD && echo going to sleep... && sleep 10000"]
+      {{- if .Values.app.envs }}
       env:
       {{- range .Values.app.envs }}
-       - name: {{ .name }}
-         value: {{ .value }}
+        - name: {{ .name }}
+          value: {{ .value }}
+      {{- end }}
       {{- end }}
