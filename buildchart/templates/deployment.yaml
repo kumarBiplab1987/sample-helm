@@ -25,6 +25,6 @@ spec:
         - name: VAULT_SECRET_PASSWORD
           value: <path:ST0117/nginx.default/data/secrets#password>
         - name:  USER_JfrogToken
-          value: <path:gateway-config/secrets#vaultGlobalArgocdUsername>
+          value: <path:gateway-config-v2/secrets#vaultGlobalArgocdUsername>
         - name: USER_ArgocdUsername
-          value: <path:gateway-config/secrets#vaultGlobalArgocdUsername>
+          value: <path:gateway-config-v2/secrets#vaultGlobalArgocdUsername>
