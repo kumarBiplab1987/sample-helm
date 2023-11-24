@@ -55,4 +55,4 @@ envs:
     value: EXTRA_HELM_VALUE
 edgeClusterConfig:
   isEdge: true
-  storeId: ST0117
+  storeId:
